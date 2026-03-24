@@ -1,0 +1,23 @@
+{
+  "lastUpdate": "2026-03-22T10:00:03.846Z",
+  "files": [
+    {
+      "file": "trajectory_2026_03.json",
+      "year": "2026",
+      "month": "03",
+      "label": "2026年03月"
+    },
+    {
+      "file": "trajectory_2026_02.json",
+      "year": "2026",
+      "month": "02",
+      "label": "2026年02月"
+    },
+    {
+      "file": "trajectory_2026_01.json",
+      "year": "2026",
+      "month": "01",
+      "label": "2026年01月"
+    }
+  ]
+}

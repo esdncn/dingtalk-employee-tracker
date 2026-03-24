@@ -1,0 +1,21 @@
+{
+  "name": "dingtalk-attendance-tracker",
+  "version": "3.2.0",
+  "description": "员工轨迹地图系统 - Node.js 版本,支持钉钉自动更新,月度数据存储,月度筛选查看",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "fetch": "node fetch_dingtalk.js"
+  },
+  "keywords": ["dingtalk", "attendance", "map", "visualization"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "axios": "^1.6.0",
+    "node-cron": "^3.0.3",
+    "dotenv": "^16.3.1"
+  }
+}

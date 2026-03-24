@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+
+    <title>员工轨迹地图可视化</title>
+    <link rel="stylesheet" href="leaflet/leaflet.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="leaflet/leaflet.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <img src="logo.png" alt="Logo" class="header-logo" width="50px">
+            <div class="header-title-container">
+                <h1>鄄城和美员工市场开发轨迹可视化平台</h1>
+                <span id="headerDataInfo" class="header-data-info"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <div class="ctrl-field">
+            <label class="ctrl-label" for="employeeSelect">员工</label>
+            <select id="employeeSelect" onchange="updateTrajectory()">
+                <option value="">选择员工</option>
+            </select>
+        </div>
+        <div class="ctrl-btns">
+            <button id="showAllBtn" onclick="showAllTrajectories()">显示全部</button>
+            <button id="clearBtn" onclick="clearTrajectories()">清除轨迹</button>
+            <button id="exportBtn" onclick="exportTrajectoryData()">导出数据</button>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div id="map"></div>
+        <div class="map-controls">
+            <button class="map-zoom-in" onclick="zoomIn()" title="放大">+</button>
+            <button class="map-zoom-out" onclick="zoomOut()" title="缩小">-</button>
+            <button class="map-reset-view" onclick="resetMapView()" title="重置视图">⟲</button>
+        </div>
+        <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <span id="scheduleTitle">员工的市场开发轨迹</span>
+                <button class="sidebar-close-btn" onclick="toggleSidebar()">关闭</button>
+            </div>
+
+            <!-- 打卡统计面板 -->
+            <div class="stats-panel" id="statsPanel" style="display: none;">
+            </div>
+
+            <!-- 月历容器 -->
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <button class="calendar-nav-btn" onclick="changeMonth(-1)">◀</button>
+                    <span class="calendar-title" id="calendarTitle">2026年03月</span>
+                    <button class="calendar-nav-btn" onclick="changeMonth(1)">▶</button>
+                </div>
+                <div class="calendar-weekdays">
+                    <div class="calendar-weekday">日</div>
+                    <div class="calendar-weekday">一</div>
+                    <div class="calendar-weekday">二</div>
+                    <div class="calendar-weekday">三</div>
+                    <div class="calendar-weekday">四</div>
+                    <div class="calendar-weekday">五</div>
+                    <div class="calendar-weekday">六</div>
+                </div>
+                <div class="calendar-days" id="calendarDays">
+                    <!-- 日历日期将通过 JS 动态生成 -->
+                </div>
+            </div>
+
+            <!-- 打卡明细面板 -->
+            <div class="attendance-detail-panel" id="attendanceDetailPanel" style="display: none;">
+                <div class="detail-panel-header">
+                    <span id="detailPanelTitle">2026-03-01 打卡明细</span>
+                    <button class="close-detail-btn" onclick="closeAttendanceDetail()">×</button>
+                </div>
+                <div class="detail-panel-content" id="detailPanelContent">
+                    <!-- 打卡明细将通过 JS 动态生成 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading" class="loading">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">正在加载数据...</div>
+    </div>
+
+    <div id="errorModal" class="error-modal" style="display: none;">
+        <div class="error-modal-content">
+            <div class="error-icon">⚠️</div>
+            <div class="error-message" id="errorMessage">加载失败</div>
+            <button class="error-retry-btn" onclick="retryLoad()">重试</button>
+            <button class="error-close-btn" onclick="closeErrorModal()">关闭</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
